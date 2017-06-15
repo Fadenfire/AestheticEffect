@@ -1,0 +1,27 @@
+#PARSE_ESCAPES
+
+itemGroup.aestheticeffect.main=Aesthetic Effect
+
+tile.aestheticeffect.hologram_projector.name=Hologram Projector
+
+gui.aestheticeffect.import=Import
+gui.aestheticeffect.export=Export
+gui.aestheticeffect.import.tooltip=Import code from file\n§cMay lag a bit!
+gui.aestheticeffect.export.tooltip=Export code to file\n§cMay lag a bit!
+gui.aestheticeffect.confirmImport=Are you sure you want to import from a file?\nAll current code will be lost.
+gui.aestheticeffect.confirmImport.title=Confirm Import
+gui.aestheticeffect.confirmReplaceFile=A file already exists at that location.\nDo you want to replace it?
+gui.aestheticeffect.confirmReplaceFile.title=Confirm Replace
+
+hologramProjector.noErrors=No Errors
+hologramProjector.errors=Errors on the following lines:
+hologramProjector.errorOnLine=Line %s: %s
+hologramProjector.error.unknownSyntax=Unknown syntax
+hologramProjector.error.noSuchMethod=The method %s doesn't exist
+hologramProjector.error.notANumber=%s isn't a number
+hologramProjector.error.notAColor=%s isn't a valid color
+hologramProjector.error.notABoolean=%s isn't a boolean
+hologramProjector.error.invalidArgs=Not enough arguments
+hologramProjector.error.notDrawing=Not drawing
+hologramProjector.error.alreadyDrawing=Already drawing
+hologramProjector.error.invalidDrawMode=%s isn't a valid draw mode

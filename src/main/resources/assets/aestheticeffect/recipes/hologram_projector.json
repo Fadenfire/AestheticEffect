@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "OGO",
+        "G G",
+        "OGO"
+    ],
+    "key": {
+        "O": {
+            "item": "minecraft:obsidian"
+        },
+        "G": {
+            "item": "minecraft:stained_glass",
+            "data": 3
+        }
+    },
+    "result": {
+        "item": "aestheticeffect:hologram_projector"
+    }
+}

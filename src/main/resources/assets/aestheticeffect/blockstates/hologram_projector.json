@@ -1,0 +1,29 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "forge:multi-layer",
+        "custom": {
+            "base": "aestheticeffect:hologram_projector#frame",
+            "Solid": "aestheticeffect:hologram_projector#frame",
+            "Translucent": "aestheticeffect:hologram_projector#center"
+        },
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}],
+        "frame": {
+            "model": "aestheticeffect:frame",
+            "textures": {
+                "corner": "blocks/obsidian",
+                "shaft": "blocks/obsidian"
+            }
+        },
+        "center": {
+            "model": "aestheticeffect:center_cube",
+            "textures": {
+                "main": "aestheticeffect:blocks/hologram_projector_center"
+            }
+        }
+    }
+}

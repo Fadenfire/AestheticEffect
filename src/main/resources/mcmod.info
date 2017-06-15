@@ -1,0 +1,15 @@
+[{
+  "modid": "aestheticeffect",
+  "name": "Aesthetic Effect",
+  "description": "Adds a bunch of small utilities that you can use to create an array of different visual effects.",
+  "version": "beta-1",
+  "mcversion": "1.12",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Silly511"],
+  "credits": "",
+  "logoFile": "",
+  "parent": "",
+  "screenshots": [],
+  "dependencies": []
+}]
