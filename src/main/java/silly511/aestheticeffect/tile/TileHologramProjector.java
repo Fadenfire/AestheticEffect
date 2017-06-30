@@ -28,9 +28,7 @@ public class TileHologramProjector extends TileSyncable {
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		NBTTagList list = new NBTTagList();
 		
-		for (String line : code)
-			list.appendTag(new NBTTagString(line));
-		
+		code.forEach((String line) -> list.appendTag(new NBTTagString(line)));
 		nbt.setTag("code", list);
 		
 		return super.writeToNBT(nbt);

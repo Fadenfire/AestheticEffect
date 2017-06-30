@@ -7,19 +7,19 @@ import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.GameData;
 
 public final class RegistryHelper {
 	
 	public static void register(Item item, String name) {
-		GameRegistry.register(item.setRegistryName(name).setUnlocalizedName(item.getRegistryName().toString().replace(':', '.')));
+		GameData.register_impl(item.setRegistryName(name).setUnlocalizedName(item.getRegistryName().toString().replace(':', '.')));
 	
 		if (item instanceof IModelRegister && isClient()) ((IModelRegister)item).registerModels();
 	}
 	
 	public static void register(Block block, String name) {
-		GameRegistry.register(block.setRegistryName(name).setUnlocalizedName(block.getRegistryName().toString().replace(':', '.')));
-		GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+		GameData.register_impl(block.setRegistryName(name).setUnlocalizedName(block.getRegistryName().toString().replace(':', '.')));
+		GameData.register_impl(new ItemBlock(block).setRegistryName(block.getRegistryName()));
 		
 		if (block instanceof IModelRegister && isClient()) ((IModelRegister)block).registerModels();
 	}

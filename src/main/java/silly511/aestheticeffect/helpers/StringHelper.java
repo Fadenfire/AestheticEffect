@@ -8,45 +8,70 @@ import com.google.common.collect.Lists;
 
 public final class StringHelper {
 	
+	/**
+	 * Splits a string by a char, ignoring any chars inside " ".
+	 * 
+	 * @param splitBy Char to split by.
+	 * @param input The string to split.
+	 * 
+	 * @return Array of strings. Each is trimmed.
+	 */
 	public static String[] splitIngoreQuotes(char splitBy, String input) {
 		List<String> list = Lists.newArrayList();
 		StringBuilder builder = new StringBuilder();
 		boolean isInsideQuotes = false;
 		
-		for (char c : input.toCharArray())
+		for (char c : input.toCharArray()) {
 			if (c == splitBy && !isInsideQuotes) {
-				list.add(builder.toString());
+				list.add(builder.toString().trim());
 				builder = new StringBuilder();
-			} else if (c == '"') {
+				
+				continue;
+			} else if (c == '"')
 				isInsideQuotes = !isInsideQuotes;
-				builder.append(c);
-			} else builder.append(c);
+			
+			builder.append(c);
+		}
 		
-		list.add(builder.toString());
+		list.add(builder.toString().trim());
 		return list.toArray(new String[0]);
 	}
 	
+	/**
+	 * Replaces all instances of a regex in a string. Ignores any occurrences of the regex that's inside " ".
+	 * 
+	 * @param regex The regular expression.
+	 * @param replacement The replacement.
+	 * @param input The input string.
+	 * 
+	 * @return The resulting string.
+	 */
 	public static String replaceIngoreQuotes(String regex, String replacement, String input) {
 		Matcher m = Pattern.compile(regex).matcher(input);
 		
 		if (m.find()) {
 			StringBuilder builder = new StringBuilder();
-			boolean isInsideQuotes = false, done = false;
+			boolean isInsideQuotes = false;
 			
 			for (int i = 0; i < input.length(); i++) {
 				char c = input.charAt(i);
 				
-				if (!done && i == m.start()) {
+				if (i == m.start()) {
 					if (!isInsideQuotes) {
 						builder.append(String.format(replacement, m.group()));
 						i += m.end() - m.start() - 1;
-					} else builder.append(c);
+					}
 					
-					if (!m.find()) done = true;
-				} else if (c == '"') {
+					if (!m.find()) {
+						builder.append(input.substring(++i));
+						break;
+					}
+					
+					if (!isInsideQuotes) continue;
+				} else if (c == '"')
 					isInsideQuotes = !isInsideQuotes;
-					builder.append(c);
-				} else builder.append(c);
+				
+				builder.append(c);
 			}
 			
 			return builder.toString();

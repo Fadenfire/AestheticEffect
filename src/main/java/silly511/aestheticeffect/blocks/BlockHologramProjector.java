@@ -7,6 +7,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -26,6 +30,9 @@ public class BlockHologramProjector extends Block implements IModelRegister {
 		this.setLightLevel(0.8f);
 		this.setLightOpacity(255);
 		this.setSoundType(SoundType.GLASS);
+		this.setHardness(30);
+		this.setResistance(2000);
+		this.setHarvestLevel("pickaxe", 0);
 	}
 	
 	@Override
@@ -53,6 +60,26 @@ public class BlockHologramProjector extends Block implements IModelRegister {
 		if (world.isRemote) player.openGui(AestheticEffect.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
 		
 		return true;
+	}
+
+	@Override
+	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune) {}
+
+	@Override
+	public void breakBlock(World world, BlockPos pos, IBlockState state) {
+		TileHologramProjector tile = (TileHologramProjector) world.getTileEntity(pos);
+		ItemStack item = new ItemStack(this);
+		NBTTagList codeNBTList = new NBTTagList();
+		
+		tile.getCode().forEach((String line) -> codeNBTList.appendTag(new NBTTagString(line)));
+		
+		item.setTagCompound(new NBTTagCompound());
+		item.getTagCompound().setTag("BlockEntityTag", new NBTTagCompound());
+		item.getTagCompound().getCompoundTag("BlockEntityTag").setTag("code", codeNBTList);
+		
+		spawnAsEntity(world, pos, item);
+		
+		super.breakBlock(world, pos, state);
 	}
 
 	@Override

@@ -14,7 +14,7 @@ import silly511.aestheticeffect.tools.ProjectorCodeExecuter;
 public class HologramTESR extends TileEntitySpecialRenderer<TileHologramProjector> {
 
 	@Override
-	public void func_192841_a(TileHologramProjector tile, double x, double y, double z, float partialTicks, int destroyStage, float thing) {
+	public void render(TileHologramProjector tile, double x, double y, double z, float partialTicks, int destroyStage, float thing) {
 		if (tile.getWorld().isBlockPowered(tile.getPos())) return;
 		
 		boolean isLookingAt = tile.getPos().equals(this.rendererDispatcher.cameraHitResult.getBlockPos());

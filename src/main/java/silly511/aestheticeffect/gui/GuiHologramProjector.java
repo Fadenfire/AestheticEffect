@@ -72,14 +72,14 @@ public class GuiHologramProjector extends GuiScreen {
 		for (int i = 0; i < 15; i++) {
 			if (i + scrollY > text.size() - 1) break;
 			
-			int renderY = y + (fontRendererObj.FONT_HEIGHT + 2) * i;
+			int renderY = y + (fontRenderer.FONT_HEIGHT + 2) * i;
 			String line = text.get(scrollY + i);
 			String trimedLine = line.trim();
 			
 			if (trimedLine.startsWith("//"))
 				line = TextFormatting.DARK_GRAY + line;
 			else if (trimedLine.matches("==[^=]*=="))
-				line = TextFormatting.BOLD +""+ TextFormatting.GRAY + line;
+				line = TextFormatting.BOLD.toString() + TextFormatting.GRAY + line;
 			else {
 				line = StringHelper.replaceIngoreQuotes("(?<!#)\\b(\\d+(\\.\\d+)?)\\b(?!([^:]*:))", TextFormatting.DARK_AQUA + "%s" + TextFormatting.RESET, line);
 				line = line.replaceAll("\"[^\"]*\"(?!([^:]*:))", TextFormatting.DARK_GREEN + "$0" + TextFormatting.RESET);
@@ -91,29 +91,29 @@ public class GuiHologramProjector extends GuiScreen {
 				GlStateManager.translate(0, 0, 3);
 				
 				if (m.find()) do {
-					int offset = this.fontRendererObj.getStringWidth(line.substring(0, m.start()));
-					int width = this.fontRendererObj.getStringWidth(m.group());
+					int offset = this.fontRenderer.getStringWidth(line.substring(0, m.start()));
+					int width = this.fontRenderer.getStringWidth(m.group());
 					int color = Integer.parseInt(m.group(1), 16);
 					
-					drawRect(x + offset, renderY - 1, x + offset + width, renderY + fontRendererObj.FONT_HEIGHT, color | 0xFF000000);
+					drawRect(x + offset, renderY - 1, x + offset + width, renderY + fontRenderer.FONT_HEIGHT, color | 0xFF000000);
 					
-					this.fontRendererObj.drawString(m.group(), x + offset, renderY, color >= 0x888888 ? 0x0 : 0xFFFFFF);
+					this.fontRenderer.drawString(m.group(), x + offset, renderY, color >= 0x888888 ? 0x0 : 0xFFFFFF);
 				} while (m.find());
 				
 				GlStateManager.popMatrix();
 			}
 			
-			this.fontRendererObj.drawString(line, x, renderY, 0xFFFFFF);
+			this.fontRenderer.drawString(line, x, renderY, 0xFFFFFF);
 		}
 		
 		if (this.cursorBlinkTimer / 6 % 2 == 0 && this.cursorY < this.scrollY + 15 && this.cursorY > this.scrollY - 1) {
-			int lineWidth = this.fontRendererObj.getStringWidth(text.get(cursorY).substring(0, cursorX)) + 1;
-			int startY = y + (fontRendererObj.FONT_HEIGHT + 2) * (cursorY - scrollY) - 1;
+			int lineWidth = this.fontRenderer.getStringWidth(text.get(cursorY).substring(0, cursorX)) + 1;
+			int startY = y + (fontRenderer.FONT_HEIGHT + 2) * (cursorY - scrollY) - 1;
 			
 			GlStateManager.pushMatrix();
 			GlStateManager.translate(0, 0, 5);
 			
-			this.drawVerticalLine(x + lineWidth - 2, startY - 1, startY + fontRendererObj.FONT_HEIGHT + 1, 0xFFFFFFFF);
+			this.drawVerticalLine(x + lineWidth - 2, startY - 1, startY + fontRenderer.FONT_HEIGHT + 1, 0xFFFFFFFF);
 			
 			GlStateManager.popMatrix();
 		}
@@ -163,7 +163,7 @@ public class GuiHologramProjector extends GuiScreen {
 		} else if (ChatAllowedCharacters.isAllowedCharacter(typedChar)) {
 			String line = new StringBuilder(text.get(cursorY)).insert(cursorX, typedChar).toString();
 			
-			if (this.fontRendererObj.getStringWidth(line) > textAreaSizeX) return;
+			if (this.fontRenderer.getStringWidth(line) > textAreaSizeX) return;
 			
 			this.cursorX++;
 			text.set(cursorY, line);
@@ -197,8 +197,8 @@ public class GuiHologramProjector extends GuiScreen {
 			int relatetiveX = mouseX - x;
 			int relatetiveY = mouseY - y;
 			
-			this.cursorY = MathHelper.clamp(this.scrollY + (int) (relatetiveY / (this.fontRendererObj.FONT_HEIGHT + 2)), 0, text.size() - 1);
-			this.cursorX = this.fontRendererObj.trimStringToWidth(this.text.get(cursorY), relatetiveX).length();
+			this.cursorY = MathHelper.clamp(this.scrollY + (int) (relatetiveY / (this.fontRenderer.FONT_HEIGHT + 2)), 0, text.size() - 1);
+			this.cursorX = this.fontRenderer.trimStringToWidth(this.text.get(cursorY), relatetiveX).length();
 		}
 		
 		super.mouseClicked(mouseX, mouseY, mouseButton);
@@ -229,7 +229,7 @@ public class GuiHologramProjector extends GuiScreen {
 					while (true) {
 						String line = reader.readLine();
 						if (line == null) break;
-						this.text.add(this.fontRendererObj.trimStringToWidth(ChatAllowedCharacters.filterAllowedCharacters(line), textAreaSizeX));
+						this.text.add(this.fontRenderer.trimStringToWidth(ChatAllowedCharacters.filterAllowedCharacters(line), textAreaSizeX));
 					}
 				} catch (IOException ex) {
 					AestheticEffect.logger.error("Unable to read file {}", fc.getSelectedFile(), ex);

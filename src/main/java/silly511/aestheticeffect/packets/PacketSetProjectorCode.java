@@ -52,7 +52,7 @@ public class PacketSetProjectorCode implements IMessage {
 
 		@Override
 		public IMessage onMessage(PacketSetProjectorCode message, MessageContext ctx) {
-			EntityPlayer player = ctx.getServerHandler().playerEntity;
+			EntityPlayer player = ctx.getServerHandler().player;
 			
 			if (player.getDistanceSq(message.pos) <= 64) {
 				TileHologramProjector tile = (TileHologramProjector) player.world.getTileEntity(message.pos);

@@ -16,12 +16,13 @@ gui.aestheticeffect.confirmReplaceFile.title=Confirm Replace
 hologramProjector.noErrors=No Errors
 hologramProjector.errors=Errors on the following lines:
 hologramProjector.errorOnLine=Line %s: %s
+
 hologramProjector.error.unknownSyntax=Unknown syntax
 hologramProjector.error.noSuchMethod=The method %s doesn't exist
-hologramProjector.error.notANumber=%s isn't a number
-hologramProjector.error.notAColor=%s isn't a valid color
-hologramProjector.error.notABoolean=%s isn't a boolean
-hologramProjector.error.invalidArgs=Not enough arguments
+hologramProjector.error.notANumber=Argument %s needs to be a number
+hologramProjector.error.wrongType=Argument %s is an invalid type
+hologramProjector.error.notEnoughArgs=Not enough arguments, needs %s
 hologramProjector.error.notDrawing=Not drawing
 hologramProjector.error.alreadyDrawing=Already drawing
 hologramProjector.error.invalidDrawMode=%s isn't a valid draw mode
+hologramProjector.error.wrongDrawMode=Must be drawing %s

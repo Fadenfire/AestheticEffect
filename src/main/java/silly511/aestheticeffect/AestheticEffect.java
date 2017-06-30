@@ -26,7 +26,7 @@ import silly511.aestheticeffect.packets.PacketSetProjectorCode;
 import silly511.aestheticeffect.render.HologramTESR;
 import silly511.aestheticeffect.tile.TileHologramProjector;
 
-@Mod(modid = AestheticEffect.modid, name = "Aesthetic Effect", version = "beta-1")
+@Mod(modid = AestheticEffect.modid, name = "Aesthetic Effect", version = "beta-2")
 public class AestheticEffect implements IGuiHandler {
 	
 	public static final String modid = "aestheticeffect";

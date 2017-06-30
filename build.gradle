@@ -9,7 +9,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.12-beta-1"
+version = "1.12-beta-2"
 group = "silly511.aestheticeffect"
 archivesBaseName = "AestheticEffect"
 libsDirName = "../releases"
@@ -17,9 +17,8 @@ libsDirName = "../releases"
 sourceCompatibility = targetCompatibility = '1.8'
 
 minecraft {
-    version = "1.12-14.21.0.2324"
-    runDir = "run"
-    mappings = "snapshot_20161220"
+    version = "1.12-14.21.1.2387"
+    mappings = "snapshot_20170629"
 }
 
 dependencies {
